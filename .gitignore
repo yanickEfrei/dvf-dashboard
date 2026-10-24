@@ -1,0 +1,15 @@
+# Données brutes : trop lourdes pour Git, re-téléchargeables avec download_data.py
+data/raw/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Divers
+.DS_Store
+.vscode/
+
+# Clé API (ne jamais la versionner)
+.streamlit/secrets.toml
