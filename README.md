@@ -84,16 +84,33 @@ ou 20 ventes (commune). L'année 2026 étant partielle, elle est toujours compar
 
 Python 3.12 ou plus récent.
 
+### Démarrage rapide (recommandé) : 2 commandes
+
+Les tables déjà nettoyées sont fournies dans `data/processed/` (≈ 22 Mo, dans le dépôt Git
+et dans le zip) : **il n'est pas nécessaire de retraiter les données** pour lancer l'appli.
+
 ```bash
 pip install -r requirements.txt
+streamlit run app.py           # ou : python -m streamlit run app.py
+```
+
+L'appli s'ouvre sur <http://localhost:8501>. Elle est aussi en ligne :
+<https://dvf-yanick-shan.streamlit.app/>.
+
+### Reconstruire les données depuis la source (facultatif)
+
+Pour vérifier le nettoyage de bout en bout, à partir des fichiers bruts de data.gouv.fr :
+
+```bash
 python download_data.py        # télécharge les fichiers bruts (≈ 2 Go) et les contours
 python prepare_data.py         # nettoie et agrège -> data/processed/  (≈ 5 à 10 min)
 streamlit run app.py
 ```
 
-Si `data/processed/` est déjà présent (cas du dépôt Git), seule la dernière commande
-est nécessaire. Le traitement est **déterministe** : aucun échantillonnage aléatoire,
-mêmes fichiers d'entrée → mêmes résultats.
+Le traitement est **déterministe** : aucun échantillonnage aléatoire, mêmes fichiers
+d'entrée → mêmes résultats. Ne pas interrompre `prepare_data.py` pendant l'écriture des
+fichiers : un fichier `.parquet` incomplet empêche l'appli de démarrer (il suffit alors de
+relancer le script).
 
 ## Structure
 
