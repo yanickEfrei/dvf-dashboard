@@ -48,6 +48,101 @@ def _checks() -> pd.DataFrame:
     return out
 
 
+def _methods() -> None:
+    """Toutes les formules utilisées dans l'appli, au même endroit."""
+    st.markdown(t("##### Méthodes de calcul", "##### How the figures are calculated"))
+    st.caption(t("Chaque chiffre de l'appli est calculé avec l'une des formules ci-dessous.",
+                 "Every figure in the app comes from one of the formulas below."))
+    NOTARY = f"{prep.NOTARY_FEES * 100:.1f}".replace(".", t(",", "."))
+    rates = " ; ".join(f"{y} : {r:.1f} %".replace(".", ",") for y, r in prep.MORTGAGE_RATES.items())
+    rates_en = "; ".join(f"{y}: {r:.1f}%" for y, r in prep.MORTGAGE_RATES.items())
+    with st.expander(t("Prix, évolutions et comparaisons", "Prices, changes and comparisons")):
+        st.markdown(t(
+            f"""
+- **Prix au m² d'une vente** = valeur foncière ÷ surface réelle bâtie.
+- **Prix médian au m²** : la moitié des ventes est au-dessus, l'autre en dessous. On utilise la
+  médiane plutôt que la moyenne, qui est tirée vers le haut par les ventes de luxe. Elle n'est
+  affichée que si elle repose sur au moins **{prep.MIN_VENTES} ventes** (département) ou
+  **{prep.MIN_VENTES_COMMUNE} ventes** (commune).
+- **Évolution (%)** = (médiane de l'année étudiée ÷ médiane de l'année de référence − 1) × 100.
+  Même formule pour le nombre de ventes.
+- **Année partielle** : si l'année étudiée s'arrête en juin, l'année de référence est limitée aux
+  mêmes mois (janvier à juin), pour comparer à période égale.
+- **Écart entre départements** = médiane du département le plus cher ÷ médiane du moins cher.
+- **Quadrants prix × ventes** : un département est classé selon le signe de ses deux évolutions
+  (prix en hausse ou en baisse, ventes en hausse ou en baisse).
+""",
+            f"""
+- **Price per m² of a sale** = sale value ÷ actual built floor area.
+- **Median price per m²**: half of the sales are above, half below. The median is used rather
+  than the average, which luxury sales pull upwards. It is only shown when based on at least
+  **{prep.MIN_VENTES} sales** (département) or **{prep.MIN_VENTES_COMMUNE} sales** (town).
+- **Change (%)** = (median of the year studied ÷ median of the baseline year − 1) × 100.
+  Same formula for the number of sales.
+- **Partial year**: if the year studied stops in June, the baseline year is limited to the same
+  months (January to June), for a like-for-like comparison.
+- **Gap between départements** = median of the most expensive département ÷ median of the
+  cheapest one.
+- **Prices × sales quadrants**: each département is placed according to the sign of its two
+  changes (prices up or down, sales up or down).
+""",
+        ))
+    with st.expander(t("Simulateurs de pouvoir d'achat", "Affordability simulators")):
+        st.markdown(t(
+            f"""
+- **Budget fixe** : surface achetable = budget ÷ prix médian au m².
+- **Capital empruntable** (prêt à taux fixe) = M × (1 − (1 + r)⁻ⁿ) ÷ r, avec M la mensualité,
+  r le taux annuel ÷ 12 et n la durée en mois. Hors assurance.
+- **Budget d'achat** = (capital empruntable + apport) ÷ (1 + {NOTARY} %) si les frais de notaire
+  sont déduits.
+- **Surface finançable** = budget d'achat ÷ prix médian au m².
+- **Effet des prix** = surface avec le budget de l'année de référence aux prix actuels, moins la
+  surface de l'année de référence. **Effet des taux** = surface actuelle, moins cette même
+  surface intermédiaire. Les deux effets s'additionnent exactement pour donner l'écart total.
+- **Taux qui permettrait de retrouver la surface de référence** : calculé par approximations
+  successives (dichotomie) sur la formule du capital empruntable.
+- **Taux par défaut** (moyennes annuelles arrondies, Observatoire Crédit Logement / CSA) :
+  {rates}. Ils sont modifiables dans le simulateur.
+""",
+            f"""
+- **Fixed budget**: affordable area = budget ÷ median price per m².
+- **Borrowing capacity** (fixed-rate loan) = M × (1 − (1 + r)⁻ⁿ) ÷ r, where M is the monthly
+  payment, r the annual rate ÷ 12 and n the term in months. Excluding insurance.
+- **Purchase budget** = (borrowing capacity + down payment) ÷ (1 + {NOTARY}%) when notary
+  fees are deducted.
+- **Affordable area** = purchase budget ÷ median price per m².
+- **Price effect** = area bought with the baseline-year budget at current prices, minus the
+  baseline-year area. **Rate effect** = current area minus that same intermediate area. The two
+  effects add up exactly to the total gap.
+- **Rate needed to get back the baseline area**: found by successive approximation (bisection)
+  on the borrowing-capacity formula.
+- **Default rates** (rounded annual averages, Observatoire Crédit Logement / CSA): {rates_en}.
+  They can be changed in the simulator.
+""",
+        ))
+    with st.expander(t("Lecture automatique des résultats", "Automatic reading of the results")):
+        st.markdown(t(
+            """
+- **Vocabulaire des évolutions** : moins de 1 % = quasi-stabilité ; moins de 3 % = légère ;
+  moins de 8 % = nette ; au-delà = forte.
+- **« Le marché s'ajuste par les volumes »** : ventes en baisse de plus de 10 % et prix qui
+  bougent de moins de 5 %.
+- **Lien entre niveau de prix et évolution** : corrélation des rangs (Spearman) entre le prix de
+  l'année de référence et l'évolution du prix ; un lien est signalé au-delà de ± 0,3.
+- Ces seuils sont des conventions choisies pour ce projet, pas des normes officielles.
+""",
+            """
+- **Words used for changes**: under 1% = near stability; under 3% = slight; under 8% = clear;
+  above = sharp.
+- **"The market adjusts through volumes"**: sales down by more than 10% while prices move by
+  less than 5%.
+- **Link between price level and change**: rank correlation (Spearman) between the baseline
+  price and the price change; a link is reported beyond ± 0.3.
+- These thresholds are conventions chosen for this project, not official standards.
+""",
+        ))
+
+
 def render() -> None:
     st.subheader(t("Peut-on faire confiance à ces chiffres ?", "Can we trust these figures?"))
     rep = load_quality()
@@ -138,6 +233,8 @@ def render() -> None:
                                       "valeurs_aberrantes_retirees":
                                           t("Nb de valeurs aberrantes retirées", "Number of outliers dropped")}),
                      hide_index=True, width="stretch")
+
+    _methods()
 
     last = prep.period_label(max(prep.available_years()))
     st.markdown(t("##### Limites et biais connus", "##### Known limitations and biases"))

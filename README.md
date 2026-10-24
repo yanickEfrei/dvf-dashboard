@@ -70,6 +70,28 @@ luxe). Une médiane n'est affichée que si elle repose sur au moins 30 ventes (d
 ou 20 ventes (commune). L'année 2026 étant partielle, elle est toujours comparée aux
 **mêmes mois** des autres années.
 
+### Méthodes de calcul
+
+Toutes les formules sont aussi affichées dans l'appli (page *Qualité des données*,
+« Méthodes de calcul »).
+
+| Chiffre | Formule |
+|---|---|
+| Prix au m² d'une vente | valeur foncière ÷ surface réelle bâtie |
+| Évolution (%) | (médiane année étudiée ÷ médiane année de référence − 1) × 100, sur les mêmes mois si l'année est partielle |
+| Écart entre départements | médiane du plus cher ÷ médiane du moins cher |
+| Surface à budget fixe | budget ÷ prix médian au m² |
+| Capital empruntable | M × (1 − (1 + r)⁻ⁿ) ÷ r (M = mensualité, r = taux annuel ÷ 12, n = durée en mois), hors assurance |
+| Budget d'achat | (capital + apport) ÷ 1,075 si les frais de notaire (≈ 7,5 %) sont déduits |
+| Surface finançable | budget d'achat ÷ prix médian au m² |
+| Effet des prix / effet des taux | avec S(B, P) = B ÷ P, B₀ et B₁ les budgets, P₀ et P₁ les prix médians de l'année de référence et de l'année étudiée : effet des prix = S(B₀, P₁) − S(B₀, P₀), effet des taux = S(B₁, P₁) − S(B₀, P₁) ; leur somme donne l'écart total |
+| Taux pour retrouver la surface de référence | résolu par dichotomie sur la formule du capital |
+| Lien niveau de prix / évolution | corrélation des rangs (Spearman), signalée au-delà de ± 0,3 |
+
+Les seuils de la lecture automatique (« légère » < 3 %, « nette » < 8 %, « forte » au-delà ;
+« ajustement par les volumes » si ventes < −10 % et prix à moins de ± 5 %) sont des
+conventions choisies pour ce projet.
+
 ### Limites
 
 - DVF ne couvre ni le Bas-Rhin, ni le Haut-Rhin, ni la Moselle, ni Mayotte.
