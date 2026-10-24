@@ -57,10 +57,10 @@ def render() -> None:
     kept = tot["lignes_finales"] / tot["lignes_brutes"] * 100
     st.markdown(t(
         f"#### Sur {fmt_int(tot['lignes_brutes'])} lignes brutes, {fmt_int(tot['lignes_finales'])} "
-        f"ventes sont retenues ({kept:.0f} %) — non pas parce que les autres sont fausses, mais "
+        f"ventes sont retenues ({kept:.0f} %), non pas parce que les autres sont fausses, mais "
         "parce qu'elles ne mesurent pas la même chose.",
         f"#### Out of {fmt_int(tot['lignes_brutes'])} raw rows, {fmt_int(tot['lignes_finales'])} "
-        f"sales are kept ({kept:.0f}%) — not because the others are wrong, but because they "
+        f"sales are kept ({kept:.0f}%), not because the others are wrong, but because they "
         "do not measure the same thing.",
     ))
 
@@ -157,7 +157,7 @@ def render() -> None:
   médianes sur au moins {prep.MIN_VENTES_COMMUNE} ventes (communes) ou {prep.MIN_VENTES}
   ventes (départements) sont montrées, conformément aux conditions de réutilisation de DVF.
 
-Source : [{SOURCE_URL}]({SOURCE_URL}) — {LICENSE}.
+Source : [{SOURCE_URL}]({SOURCE_URL}) ({LICENSE}).
 """,
         f"""
 - **Coverage**: DVF does not cover Bas-Rhin, Haut-Rhin and Moselle (which use a different
@@ -173,6 +173,6 @@ Source : [{SOURCE_URL}]({SOURCE_URL}) — {LICENSE}.
   {prep.MIN_VENTES_COMMUNE} sales (towns) or {prep.MIN_VENTES} sales (départements) are
   displayed, in line with DVF's terms of reuse.
 
-Source: [{SOURCE_URL}]({SOURCE_URL}) — {LICENSE}.
+Source: [{SOURCE_URL}]({SOURCE_URL}) ({LICENSE}).
 """,
     ))

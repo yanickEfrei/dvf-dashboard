@@ -6,7 +6,8 @@ foncières (DVF)** : toutes les ventes immobilières enregistrées en France de 
 - **Auteur** : Yanick SHAN — n° étudiant 20241145 — groupe DE2 (Majeure Data Engineering)
 - **Enseignant** : Mano Joseph MATHEW
 - **Cours** : Data Visualization — EFREI Paris — #EFREIDataStories2026
-- **Appli en ligne** : [URL Streamlit Community Cloud]
+- **Appli en ligne** : <https://dvf-yanick-shan.streamlit.app/>
+- **Code source** : <https://github.com/yanickEfrei/dvf-dashboard>
 - **Vidéo de démonstration** : [lien]
 
 ## La question

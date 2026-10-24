@@ -76,13 +76,13 @@ buying a home more affordable everywhere in France?*
         ))
     with c2:
         st.info(t(
-            "**Pour qui ?** Un jeune actif qui se demande s'il peut acheter, et où — "
+            "**Pour qui ?** Un jeune actif qui se demande s'il peut acheter, et où, "
             "ou toute personne curieuse du marché immobilier.\n\n"
             "**Mode d'emploi.** Le menu en haut mène aux différentes pages du récit. Les "
             "filtres de la barre latérale (type de bien, années, régions) s'appliquent à "
             "toutes les pages. Survolez les graphiques pour voir les valeurs exactes.",
             "**Who is it for?** A young professional wondering whether they can buy, and "
-            "where — or anyone curious about the housing market.\n\n"
+            "where, or anyone curious about the housing market.\n\n"
             "**How to use it.** The menu at the top leads to each page of the story. The "
             "sidebar filters (property type, years, regions) apply to every page. Hover "
             "over the charts to see exact values.",

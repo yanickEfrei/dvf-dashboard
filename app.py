@@ -17,7 +17,7 @@ st.set_page_config(
 AUTHOR = "Yanick SHAN"
 TEACHER = "Mano Joseph MATHEW"
 MAJOR_FR, MAJOR_EN = "Majeure Data Engineering", "Data Engineering major"
-COURSE = "Data Visualization — EFREI Paris — 2026"
+COURSE = "Data Visualization · EFREI Paris · 2026"
 
 from sections import budget, conclusions, deep_dives, intro, overview, quality  # noqa: E402
 from utils import ai, insights, prep  # noqa: E402
@@ -63,12 +63,12 @@ with st.sidebar:
 
     st.divider()
     st.caption(t(
-        f"**Source** : [{SOURCE_TITLE}]({SOURCE_URL}), {SOURCE_PRODUCER} — {LICENSE}.  \n"
+        f"**Source** : [{SOURCE_TITLE}]({SOURCE_URL}), {SOURCE_PRODUCER} ({LICENSE}).  \n"
         f"{GEOJSON_SOURCE}.  \nTaux de crédit : Observatoire Crédit Logement / CSA.  \n"
         "Traitements : ventes d'un seul logement dans l'ancien, médianes ; voir *Qualité des "
         "données*.",
         f"**Source**: [{SOURCE_TITLE}]({SOURCE_URL}) (French property sales records), "
-        f"French Public Finances Directorate (DGFiP) — {LICENSE}.  \n"
+        f"French Public Finances Directorate (DGFiP), {LICENSE}.  \n"
         "Département boundaries: france-geojson (G. David), based on IGN / OpenStreetMap.  \n"
         "Mortgage rates: Observatoire Crédit Logement / CSA.  \n"
         "Processing: sales of a single existing home, medians; see *Data quality*.",
@@ -104,9 +104,9 @@ def _has_sales() -> bool:
 def page_home() -> None:
     st.title(t("Acheter un logement en 2026 : où le rêve est-il encore possible ?",
                "Buying a home in 2026: where is it still within reach?"))
-    st.caption(t(f"Cinq ans de ventes immobilières en France — source : {SOURCE_TITLE} "
+    st.caption(t(f"Cinq ans de ventes immobilières en France. Source :{SOURCE_TITLE} "
                  f"(data.gouv.fr, {LICENSE})",
-                 "Five years of property sales in France — source: Demandes de valeurs foncières "
+                 "Five years of property sales in France. Source:Demandes de valeurs foncières "
                  f"(DVF, data.gouv.fr, {LICENSE})"))
     _credits_line()
     intro.render()
