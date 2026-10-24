@@ -20,7 +20,7 @@ MAJOR_FR, MAJOR_EN = "Majeure Data Engineering", "Data Engineering major"
 COURSE = "Data Visualization · EFREI Paris · 2026"
 
 from sections import budget, conclusions, deep_dives, intro, overview, quality  # noqa: E402
-from utils import ai, insights, prep  # noqa: E402
+from utils import ai, insights, methods, prep  # noqa: E402
 from utils.io import GEOJSON_SOURCE, LICENSE, SOURCE_PRODUCER, SOURCE_TITLE, SOURCE_URL  # noqa: E402
 
 # ---------------------------------------------------------------- Barre latérale
@@ -135,6 +135,7 @@ def page_when() -> None:
                 "How have the price per m² and the number of sales changed since rates went up?")
     if _has_sales():
         overview.render(f)
+        methods.render("quand")
         insights.render("quand", f)
         ai.render("quand", f)
 
@@ -145,6 +146,7 @@ def page_where() -> None:
                 "Which départements are the most expensive, and which fell the most?")
     if _has_sales():
         deep_dives.render_where(f)
+        methods.render("ou")
         insights.render("ou", f)
         ai.render("ou", f)
 
@@ -155,6 +157,7 @@ def page_budget() -> None:
                 "Has the fall in prices made up for the rise in rates?")
     if _has_sales():
         budget.render(f)
+        methods.render("pouvoir-achat")
         insights.render("pouvoir-achat", f)
         ai.render("pouvoir-achat", f)
 
@@ -164,6 +167,7 @@ def page_dep() -> None:
                 "Appartements et maisons ont-ils suivi la même trajectoire ?",
                 "Did apartments and houses follow the same path?")
     deep_dives.render_focus(f)
+    methods.render("departement")
     insights.render("departement", f)
     ai.render("departement", f)
 
