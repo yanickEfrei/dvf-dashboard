@@ -13,3 +13,6 @@ venv/
 
 # Clé API (ne jamais la versionner)
 .streamlit/secrets.toml
+
+# Consigne du projet (document du professeur, à ne pas publier)
+*.pdf

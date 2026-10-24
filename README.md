@@ -8,7 +8,7 @@ foncières (DVF)** : toutes les ventes immobilières enregistrées en France de 
 - **Cours** : Data Visualization — EFREI Paris — #EFREIDataStories2026
 - **Appli en ligne** : <https://dvf-yanick-shan.streamlit.app/>
 - **Code source** : <https://github.com/yanickEfrei/dvf-dashboard>
-- **Vidéo de démonstration** : [lien]
+- **Vidéo de démonstration** (3 min) : <https://drive.google.com/file/d/18dIe52qhnHyGReEj2JRDhecSvxrn_KoQ/view?usp=sharing>
 
 ## La question
 
